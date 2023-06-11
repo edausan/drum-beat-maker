@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Beat = () => {
   const [beatsNum, setBeatsNum] = useState([]);
-  const [with16, setwith16] = useState(false);
+  const [with16, setWith16] = useState(false);
 
   useEffect(() => {
     handleNums();
@@ -21,10 +21,13 @@ const Beat = () => {
   };
 
   return (
-    <section className="flex flex-row gap-4">
-      {beatsNum.map((beat) => {
+    <section className="flex flex-col gap-4">
+			<div className="mb-4">
+				<button onClick={() => setWith16(prev => !prev)}>{with16 ? "without":"with"} 16th notes</button>
+			</div>
+     <div className="flex flex-row gap-4"> {beatsNum.map((beat) => {
         return <Column beat={beat} with16={with16} />;
-      })}
+      })}</div>
     </section>
   );
 };
@@ -33,6 +36,7 @@ const Column = ({ beat, with16 }) => {
   console.log({ beat });
   return (
     <section className="flex flex-col gap-3 text-md">
+			
       <div className="flex flex-row gap-3">
         <div>
           {beat.num}
